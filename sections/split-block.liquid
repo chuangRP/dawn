@@ -1,0 +1,122 @@
+{{ 'component-split-block.css' | asset_url | stylesheet_tag }}
+
+{%- capture flickity_options -%}
+{
+  "prevNextButtons": false,
+  "wrapAround": true,
+  "dragThreshold": 15,
+  "pauseAutoPlayOnHover": false,
+  "watchCSS": true
+}
+{%- endcapture -%}
+
+<section class="splitblock-section">
+    <div class="SplitBlock" data-flickity='{{ flickity_options }}'>
+        {%- for block in section.blocks -%}
+            {%- assign mobile_image = block.settings.mobile_image | default: block.settings.split-image -%}
+            <div class="SplitBlock__Cell">
+                {%- if block.settings.button-link != empty -%}<a href="{{ block.settings.button-link }}">{%- endif -%}
+                    {%- if mobile_image -%}
+                        <div class="Slideshow__ImageContainer AspectRatio hidden-tablet-and-up" style="--aspect-ratio: {{ mobile_image.aspect_ratio }}; background-image: url({{ mobile_image | img_url: '1x1', format: 'jpg' }})">
+                            <img class="hidden-tablet hidden-lap hidden-desk" src="{{ mobile_image | img_url: 'x800' }}">
+                        </div>
+                    {%- else -%}
+                        <img class="hidden-tablet hidden-lap hidden-desk" src="{{ block.settings.split-image | img_url: '1000x' }}">
+                    {%- endif -%}
+                    {%- if block.settings.split-image -%}
+                        <img class="hidden-phone" src="{{ block.settings.split-image | img_url: '1000x' }}">
+                    {%- endif -%}
+                {%- if block.settings.button-link != empty -%}</a>{%- endif -%}
+
+                <div class="SplitBlock__Content">
+                    {%- if block.settings.sub-heading != empty -%}
+                        <h3>{{ block.settings.sub-heading | escape }}</h3>
+                    {%- endif -%}
+                    {%- if block.settings.main-heading != empty -%}
+                        <h2>{{ block.settings.main-heading | escape }}</h2>
+                    {%- endif -%}
+                    {%- if block.settings.button-text != empty -%}
+                        <a class="button button--primary" href="{{ block.settings.button-link }}">{{ block.settings.button-text | escape }}</a>
+                    {%- endif -%}
+                </div>
+            </div>
+        {%- endfor -%}
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Split Block",
+    "max_blocks": 2,
+    "settings": [
+        {
+            "type": "range",
+            "id": "cycle_speed",
+            "min": 3,
+            "max": 8,
+            "step": 1,
+            "unit": "sec",
+            "label": "Change slides every",
+            "default": 5
+        }
+    ],
+    "blocks": [
+        {
+            "type": "image",
+            "name": "slider-image",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "split-image",
+                    "label": "slider-image"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mobile_image",
+                    "label": "Mobile image"
+                },
+                {
+                    "type": "text",
+                    "id": "sub-heading",
+                    "label": "Sub-heading",
+                    "default": "Sub Heading Split"
+                },
+                {
+                    "type": "text",
+                    "id": "main-heading",
+                    "label": "Heading",
+                    "default": "Main Heading Split"
+                },
+                {
+                    "type": "header",
+                    "content": "Button"
+                },
+                {
+                    "type": "text",
+                    "id": "button-text",
+                    "label": "Text",
+                    "default": "Shop Now"
+                },
+                {
+                    "type": "url",
+                    "id": "button-link",
+                    "label": "Link"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Split Block",
+            "blocks": [
+                {
+                    "type": "image"
+                },
+                {
+                    "type": "image"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

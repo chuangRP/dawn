@@ -1,0 +1,126 @@
+
+@media screen and (max-width: 640px) {
+    .hidden-phone {
+      display: none !important;
+    }
+}
+
+@media screen and (min-width: 641px) and (max-width: 1007px) {
+    .hidden-tablet {
+      display: none !important;
+    }
+}
+
+@media screen and (min-width: 641px) {
+    .hidden-tablet-and-up {
+      display: none !important;
+    }
+}
+
+@media screen and (min-width: 1008px) and (max-width: 1239px) {
+    .hidden-lap {
+      display: none !important;
+    }
+}
+
+@media screen and (min-width: 1240px) {
+    .hidden-desk {
+      display: none !important;
+    }
+}
+
+@media screen and (min-width: 1007px) {
+  .splitblock-section {
+    margin: 100px 0;
+  }
+}
+
+.SplitBlock {
+  min-height: 200px;
+}
+
+.SplitBlock:after {
+  content: 'flickity';
+  display: none;
+}
+  
+.SplitBlock__Cell {
+  width: 100%;
+  min-height: 100px;
+}
+.SplitBlock__Cell img {
+  margin: 0;
+  width: 100%;
+}
+.SplitBlock__Cell .Slideshow__ImageContainer {
+  margin-bottom: 40px;
+}
+  
+.SplitBlock__Content {
+  text-align: center;
+}
+.SplitBlock__Content h3 {
+  margin-bottom: 10px;
+}
+.SplitBlock__Content h2 {
+  margin-top: 10px;
+}
+.SplitBlock__Content a {
+  margin-top: 10px;
+}
+  
+@media screen and (min-width: 641px) {
+  .SplitBlock {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .SplitBlock:after {
+    content: '';
+  }
+  .SplitBlock .SplitBlock__Cell {
+    flex: 1 1 auto;
+    max-width: 100%;
+    position: relative;
+  }
+  .SplitBlock .SplitBlock__Cell img {
+    margin: 0;
+  }
+  
+  .SplitBlock__Content {
+    text-align: left;
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    margin-left: 25px;
+  }
+  .SplitBlock__Content h3,
+  .SplitBlock__Content h2 {
+    color: white;
+  }
+  .SplitBlock__Content a {
+    margin-top: 10px;
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 1008px) {
+  .SplitBlock .SplitBlock__Cell {
+    max-width: 50%;
+  }
+}
+
+.Slideshow__ImageContainer {
+  height: 100%; }
+
+.AspectRatio {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-style: none;
+    vertical-align: top;
+}
