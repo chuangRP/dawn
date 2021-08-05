@@ -1,0 +1,114 @@
+{{ 'component-block-padding.css' | asset_url | stylesheet_tag }}
+
+<div class="image-with-icon__section">
+    <div class="block-padding__content block-padding__options">
+        <div class="image-with-icon__content">
+            {%- for block in section.blocks -%}
+                {% case block.type %}
+                    {%- when 'image' -%}
+                        {%- if block.settings.icon != blank -%}
+                            <img class="icon__cropped" src="{{ block.settings.icon | img_url: 'master' }}" loading="lazy">
+                        {%- else -%}
+                            <div class="icon__cropped placeholder">
+                                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                            </div>
+                        {%- endif -%}
+                    {%- when 'heading' -%}
+                    <h2>{{ block.settings.heading | escape }}</h2>
+                {%- endcase -%}
+            {%- endfor -%}
+        </div>
+    </div>
+    {%- if section.settings.feature-image != blank -%}
+        <div class="block-padding__media media">
+            <img srcset="{%- if section.settings.feature-image.width >= 375 -%}{{ section.settings.feature-image | img_url: '375x' }} 375w,{%- endif -%}
+                {%- if section.settings.feature-image.width >= 750 -%}{{ section.settings.feature-image | img_url: '750x' }} 750w,{%- endif -%}
+                {%- if section.settings.feature-image.width >= 1100 -%}{{ section.settings.feature-image | img_url: '1100x' }} 1100w,{%- endif -%}
+                {%- if section.settings.feature-image.width >= 1500 -%}{{ section.settings.feature-image | img_url: '1500x' }} 1500w,{%- endif -%}
+                {%- if section.settings.feature-image.width >= 1780 -%}{{ section.settings.feature-image | img_url: '1780x' }} 1780w,{%- endif -%}
+                {%- if section.settings.feature-image.width >= 2000 -%}{{ section.settings.feature-image | img_url: '2000x' }} 2000w,{%- endif -%}
+                {%- if section.settings.feature-image.width >= 2800 -%}{{ section.settings.feature-image | img_url: '2800x' }} 2800w{%- endif -%}"
+                src="{{ section.settings.feature-image | img_url: '750x' }}"
+                sizes="(min-width: 1100px) 535px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
+                alt="{{ section.settings.feature-image.alt | escape }}"
+                loading="lazy"
+                width="{{ section.settings.feature-image.width }}"
+                height="{{ section.settings.feature-image.height }}"
+            >
+        </div>
+    {%- else -%}
+        <div class="block-padding__media media placeholder">
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+    {%- endif -%}
+    <div class="block-padding__content block-padding__button">
+        {%- if section.settings.button-label != blank -%}
+            <a{% if section.settings.button-link != blank %} href="{{ section.settings.button-link }}"{% endif %} class="button">{{ section.settings.button-label | escape }}</a>
+        {%- endif -%}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Image with icon",
+    "class": "spaced-section spaced-section--full-width",
+    "settings": [
+        {
+            "type": "image_picker",
+            "label": "your image",
+            "id": "feature-image"
+        },
+        {
+            "type": "text",
+            "id": "button-label",
+            "default": "Shop Now 3",
+            "label": "section-button"
+        },
+        {
+            "type": "url",
+            "id": "button-link",
+            "label": "section-button-link"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "image",
+            "name": "Icon Image",
+            "limit": 1,
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "label": "your icon",
+                    "id": "icon"
+                }
+            ]
+        },
+        {
+            "type": "heading",
+            "name": "Heading",
+            "limit": 1,
+            "settings": [
+                {
+                    "id": "heading",
+                    "type": "text",
+                    "label": "icon-header",
+                    "default": "Text Heading 3"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Image with Icon",
+            "blocks": [
+                {
+                    "type": "image"
+                },
+                {
+                    "type": "heading"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
