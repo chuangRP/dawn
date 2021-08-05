@@ -1,0 +1,159 @@
+{{ 'component-staggered-block.css' | asset_url | stylesheet_tag }}
+
+{%- capture flickity_options -%}
+{
+  "prevNextButtons": false,
+  "wrapAround": true,
+  "dragThreshold": 15,
+  "pauseAutoPlayOnHover": false,
+  "watchCSS": true
+}
+{%- endcapture -%}
+
+<section class="StaggeredBlock-section">
+    <div class="StaggeredBlock__Container">
+        <div class="StaggeredBlock__Background StaggeredBlock__Background--top hidden-phone"> </div>
+        <div class="StaggeredBlock__Background StaggeredBlock__Background--bottom hidden-phone"> </div>
+        <div class="StaggeredBlock" data-flickity='{{ flickity_options }}'>
+            {%- for block in section.blocks -%}
+                {%- assign mobile_image = block.settings.mobile_image | default: block.settings.staggered-image -%}
+                <div class="StaggeredBlock__Cell StaggeredBlock__Cell--{{ forloop.index }}">
+                    {%- if block.settings.button-link != empty -%}<a href="{{ block.settings.button-link }}">{%- endif -%}
+                        {%- if mobile_image -%}
+                            <img class="hidden-tablet hidden-lap hidden-desk" src="{{ mobile_image | img_url: 'x800' }}">
+                        {%- else -%}
+                            <img class="hidden-tablet hidden-lap hidden-desk" src="{{ block.settings.staggered-image | img_url: '1000x' }}">
+                        {%- endif -%}
+                        {%- if block.settings.staggered-image -%}
+                            <img class="hidden-phone" src="{{ block.settings.staggered-image | img_url: '1000x' }}">
+                        {%- endif -%}
+                    {%- if block.settings.button-link != empty -%}</a>{%- endif -%}
+
+                    <div class="StaggeredBlock__Content">
+                        {%- if block.settings.main-heading != empty -%}
+                            <h2>{{ block.settings.main-heading | escape }}</h2>
+                        {%- endif -%}
+                        {%- if block.settings.content != empty -%}
+                            <p class="StaggeredBlock__Content--description">{{ block.settings.content | escape }}</p>
+                        {%- endif -%}
+                        {%- if block.settings.button-text != empty -%}
+                            <a class="button button--primary" href="{{ block.settings.button-link }}">{{ block.settings.button-text | escape }}</a>
+                        {%- endif -%}
+                    </div>
+                </div>
+            {%- endfor -%}
+        </div>
+    </div>
+</section>
+
+<style>
+.StaggeredBlock__Background--top {
+    {%- if section.settings.background_image -%}
+      background-image: url({{ section.settings.background_image | img_url: '1000x' }});
+    {%- else -%}
+      background-color: {{ section.settings.background_color_top }};
+    {%- endif -%}
+}
+.StaggeredBlock__Background--bottom {
+    background-color: {{ section.settings.background_color_bottom }};
+}
+</style>
+
+{% schema %}
+{
+    "name": "Staggered Block",
+    "max_blocks": 3,
+    "settings": [
+        {
+            "type": "range",
+            "id": "cycle_speed",
+            "min": 3,
+            "max": 8,
+            "step": 1,
+            "unit": "sec",
+            "label": "Change slides every",
+            "default": 5
+        },
+        {
+            "type": "image_picker",
+            "id": "background_image",
+            "label": "Background image",
+            "info": "Will only be visible on tablet and desktop"
+        },
+        {
+            "type": "color",
+            "id": "background_color_top",
+            "label": "Top background color",
+            "default": "#000",
+            "info": "Will be used if no image is selected"
+        },
+        {
+            "type": "color",
+            "id": "background_color_bottom",
+            "label": "Bottom background color",
+            "default": "#f3f3f3"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "image",
+            "name": "slider-image",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "staggered-image",
+                    "label": "slider-image"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "mobile_image",
+                    "label": "Mobile image"
+                },
+                {
+                    "type": "text",
+                    "id": "main-heading",
+                    "label": "Heading",
+                    "default": "Main Heading Staggered"
+                },
+                {
+                    "type": "text",
+                    "id": "content",
+                    "label": "content",
+                    "default": "Content Staggered"
+                },
+                {
+                    "type": "header",
+                    "content": "Button"
+                },
+                {
+                    "type": "text",
+                    "id": "button-text",
+                    "label": "Text",
+                    "default": "Shop Now"
+                },
+                {
+                    "type": "url",
+                    "id": "button-link",
+                    "label": "Link"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Staggered Block",
+            "blocks": [
+                {
+                    "type": "image"
+                },
+                {
+                    "type": "image"
+                },
+                {
+                    "type": "image"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

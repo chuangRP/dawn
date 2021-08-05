@@ -1,0 +1,88 @@
+.StaggeredBlock-section {
+    margin-bottom: 100px;
+    min-height: auto;
+}
+
+.StaggeredBlock {
+  min-height: 200px;
+}
+
+.StaggeredBlock:after {
+  content: 'flickity';
+  display: none;
+}
+
+.StaggeredBlock__Cell {
+  width: 100%;
+  min-height: 100px;
+}
+.StaggeredBlock__Cell img {
+  margin: 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 640px) {
+  .StaggeredBlock {
+    padding-top: 120px;
+  }
+
+  .StaggeredBlock__Content {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 641px) {
+  .StaggeredBlock {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0 15px;
+    justify-content: space-around; }
+    .StaggeredBlock:after {
+      content: ''; }
+    .StaggeredBlock .StaggeredBlock__Cell {
+      margin: 50px 20px 20px 20px;
+      max-width: 40%; }
+    .StaggeredBlock img {
+      margin-bottom: 0; }
+
+  .StaggeredBlock__Content {
+    text-align: left;
+    padding-bottom: 40px;
+    margin-top: -20px;
+    padding-top: 5px;
+  }
+  .StaggeredBlock__Content h2 {
+    padding-top: 20px;
+  }
+  .StaggeredBlock__Content a {
+    margin-top: 10px;
+  }
+  
+  .StaggeredBlock .StaggeredBlock__Cell:nth-child(2) {
+    margin-top: 100px;
+  }
+
+  .StaggeredBlock__Container {
+    position: relative;
+  }
+  
+  .StaggeredBlock__Background--top {
+    background-color: #242424;
+    top: 0;
+    height: 50%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+  }
+  
+  .StaggeredBlock__Background--bottom {
+    background-color: #f3f3f3;
+    top: 50%;
+    height: 50%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+  }
+}
+
+
