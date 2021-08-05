@@ -1,0 +1,138 @@
+.editorial-block-section {
+  margin-bottom: 100px;
+}
+
+.link--button {
+  text-decoration: none;
+}
+
+.link--button:hover {
+  color: rgb(var(--color-foreground));
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+}
+
+
+.EditorialBlock {
+  padding-top: 120px;
+}
+.EditorialBlock:after {
+  content: 'flickity';
+  display: none;
+}
+  
+.EditorialBlock__Cell {
+  width: 100%;
+  min-height: 100px;
+}
+.EditorialBlock__Cell img {
+  margin: 0;
+  width: 100%;
+}
+  
+  @media screen and (max-width: 640px) {
+    .EditorialBlock {
+      padding-top: 120px;
+    }
+  }
+
+.EditorialBlock__Content {
+  text-align: center;
+}
+.EditorialBlock__Content .EditorialBLock__Content--description {
+  font-size: 14px;
+}
+.EditorialBlock__Content h2 {
+  margin-top: 10px;
+}
+.EditorialBlock__Content a {
+  margin-top: 10px;
+  padding: 5px 0;
+  width: 90%;
+}
+  
+@media screen and (max-width: 640px) {
+  .EditorialBlock__Content--description {
+    margin: 0 15px;
+  }
+}
+@media screen and (min-width: 1240px) {
+  .EditorialBlock {
+    padding: 55px;
+  }
+}
+@media screen and (min-width: 641px) {
+  .EditorialBlock {
+    display: flex;
+    justify-content: center;
+    flex: 0 1 auto;
+    padding: 120px 55px 55px;
+  }
+  .EditorialBlock:after {
+    content: '';
+  }
+  .EditorialBlock .EditorialBlock__Cell {
+    display: flex;
+    margin: 20px;
+  }
+  .EditorialBlock .EditorialBlock__Content {
+    text-align: left;
+    padding-left: 20px;
+    margin: 20px 0;
+    position: relative;
+  }
+  /*
+  .EditorialBlock .EditorialBlock__Content::before {
+    content: '';
+    position: absolute;
+    left: 25px;
+    height: 35px;
+    width: 35px;
+    transform: rotateZ(45deg);
+    background-color: white;
+  }
+  */
+  .EditorialBlock .EditorialBlock__Cell:nth-child(1) {
+    flex-direction: column-reverse;
+    width: 435px;
+    margin-top: 50px;
+  }
+  .EditorialBlock .EditorialBlock__Cell:nth-child(1) .EditorialBlock__Content::before {
+    bottom: -35px;
+  }
+  .EditorialBlock .EditorialBlock__Cell:nth-child(2) {
+    flex-direction: column;
+    width: 640px;
+  }
+  .EditorialBlock .EditorialBlock__Cell:nth-child(2) .EditorialBlock__Content {
+    margin-left: 0px;
+  }
+  .EditorialBlock .EditorialBlock__Cell:nth-child(2) .EditorialBlock__Content::before {
+    top: -35px;
+  }
+  .EditorialBlock h2 {
+    margin-bottom: 10px;
+  }
+  .EditorialBlock p {
+    margin: 0;
+    font-size: 16px;
+  }
+  .EditorialBlock a {
+    padding-left: 0;
+    text-align: left;
+    margin: 0;
+  }
+}
+@media screen and (min-width: 1240px) {
+  .EditorialBlock {
+    padding-top: 0;
+  }
+
+  .EditorialBlock__Cell:nth-child(1) {
+    margin-top: 150px;
+  }
+
+  .EditorialBlock__Cell:nth-child(2) .EditorialBlock__Content {
+    margin-left: 225px;
+  }
+}
