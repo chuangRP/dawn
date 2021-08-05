@@ -50,11 +50,79 @@
         "text",
         "button"
       ]
+    },
+    "split_block": {
+      "type": "split-block",
+      "blocks": {
+        "image": {
+          "type": "image"
+        },
+        "image2": {
+          "type": "image"
+        }
+      },
+      "block_order": [
+        "image",
+        "image2"
+      ]
+    },
+    "block_padding": {
+      "type": "block-padding",
+      "blocks": {
+        "image": {
+          "type": "image"
+        },
+        "heading": {
+          "type": "heading"
+        }
+      },
+      "block_order": [
+        "image",
+        "heading"
+      ]
+    },
+    "editorial_block": {
+      "type": "editorial-block",
+      "blocks": {
+        "image": {
+          "type": "image"
+        },
+        "image2": {
+          "type": "image"
+        }
+      },
+      "block_order": [
+        "image",
+        "image2"
+      ]
+    },
+    "staggered_block": {
+      "type": "staggered-block",
+      "blocks": {
+        "image": {
+          "type": "image"
+        },
+        "image2": {
+          "type": "image"
+        },
+        "image3": {
+          "type": "image"
+        }
+      },
+      "block_order": [
+        "image",
+        "image2",
+        "image3"
+      ]
     }
   },
   "order": [
     "image_banner",
     "featured_products",
-    "image_text"
+    "image_text",
+    "split_block",
+    "block_padding",
+    "editorial_block",
+    "staggered_block"
   ]
 }
